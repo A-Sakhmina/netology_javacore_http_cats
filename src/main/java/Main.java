@@ -33,10 +33,12 @@ public class Main {
                         .setRedirectsEnabled(false) // возможность следовать редиректу в ответе
                         .build())
                 .build();
+        // создание объекта запроса
         HttpGet request = new HttpGet(httpUrl);
         try {
+            // отправка запроса
             CloseableHttpResponse response = httpClient.execute(request);
-            //получаем все объекты
+            //получаем все объекты, преобразования json в java
             List<Post> posts = mapper.readValue(response.getEntity().getContent(), new TypeReference<List<Post>>() {
             });
             return posts;
